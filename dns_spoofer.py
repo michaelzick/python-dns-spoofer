@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
 import netfilterqueue
+import scapy.all as scapy
 
 
 def process_packet(packet):
-    print(packet)
-    packet.drop()
-    # packet.accept()
+    scapy_packet = scapy.IP(packet.get_payload())
+    if scapy_packet.haslayer(scapy.DNSRR):
+        print(scapy_packet.show())
+    # packet.drop()
+    packet.accept()
 
 
 queue = netfilterqueue.NetfilterQueue()
